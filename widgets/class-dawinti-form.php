@@ -112,7 +112,53 @@ class Dawinti extends Widget_Base {
 	 * @access protected
 	 */
 	protected function _register_controls() {
+		$this->start_controls_section(
+			'content_section',
+			[
+				'label' => __( 'Content', 'Elementor Da Winti' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+			$repeater = new Repeater();
+
+			$repeater->add_control(
+				'option_value',
+				[
+					'label' => __( 'Option Value', 'Elementor Da Winti' ),
+					'type' => \Elementor\Controls_Manager::TEXT,
+					'default' => __( "The Option's Value", 'Elementor Da Winti' ),
+					'placeholder' => __( 'Value Attribute', 'Elementor Da Winti' ),
+					'label_block' => true,
+				]
+			);
+
+			$repeater->add_control(
+				'option_contents',
+				[
+					'label' => __( 'Option Contents', 'Elementor Da Winti' ),
+					'type' => \Elementor\Controls_Manager::TEXT,
+					'default' => __( "The Option's Contents", 'Elementor Da Winti' ),
+					'placeholder' => __( 'Option Contents', 'Elementor Da Winti' ),
+					'show_label' => false,
+				]
+			); 
+
+			$this->add_control(
+				'options_list',
+				[
+					'label' => __( 'Repeater List', 'Elementor Da Winti' ),
+					'type' => \Elementor\Controls_Manager::REPEATER,
+					'fields' => $repeater->get_controls(),
+					'default' => [
+						[]
+					],
+					'title_field' => '{{{ option_contents }}}'
+				]
+			); 
+
 		
+
+		$this->end_controls_section();
 	}
 
 	/**
@@ -125,6 +171,7 @@ class Dawinti extends Widget_Base {
 	 * @access protected
 	 */
 	protected function render() {
+			$options_list = $this->get_settings_for_display('options_list');
 		?>
 			<div id='dawinti-booking-form-container'>
 			    <div id='dawinti-booking-form-container-sub'>
@@ -139,9 +186,13 @@ class Dawinti extends Widget_Base {
                             <label>
                             Begivenhed
                             </label>
-                            <select name='dawinti_event_type'>
-                                <option value='fest'>Fest</option>
-                            </select>
+							<?php
+									echo "<select name='dawinti_event_type'>";
+										foreach ($options_list as $option_item) {
+											echo "<option value='{$option_item['option_value']}'>{$option_item['option_contents']}</option>";
+										}
+									echo "<select>";		
+							?>
                         </div>
                             
                         <div id='dawinti-booking-form-dato'>
@@ -255,5 +306,5 @@ class Dawinti extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function _content_template() {}
+	protected function _content_template() {} 
 }
