@@ -7,8 +7,6 @@
  * @subpackage WordPress
  * @author     Drescher Rijna & Veli Aday
  * @copyright  2021 Drescher Rijna & Veli Aday
- * @license    ''
- * @link       ''
  * @since      1.0.0
  * php version 7.3.9
  */
@@ -23,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * init class er den der køre Elementor DaWinti pluginet.
  */
-final class Elementor_DaWinti {
+final class Elementor_Dawinti {
 
 	/**
 	 * Plugin Version
@@ -195,4 +193,4 @@ final class Elementor_DaWinti {
 }
 
 // Instantiate Elementor_Awesomesauce.
-new Elementor_DaWinti();
+new Elementor_Dawinti();

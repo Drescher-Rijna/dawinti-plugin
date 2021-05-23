@@ -7,13 +7,11 @@
  * @subpackage WordPress
  * @author     Drescher Rijna & Veli Aday
  * @copyright  2021 Drescher Rijna & Veli Aday
- * @license    ''
- * @link       ''
  * @since      1.0.0
  * php version 7.3.9
  */
 
-namespace ElementorDaWinti\Widgets;
+namespace ElementorDawinti\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -26,7 +24,7 @@ defined( 'ABSPATH' ) || die();
  *
  * @since 1.0.0
  */
-class DaWinti extends Widget_Base {
+class Dawinti extends Widget_Base {
 
 	/**
 	 * Class constructor.
@@ -38,10 +36,8 @@ class DaWinti extends Widget_Base {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'dawinti_form_css', plugins_url( '/assets/css/dawinti-form.css', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
-		wp_register_script( 'dawinti_js', plugins_url( '/assets/js/dawinti.js', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
 
 		wp_enqueue_style('dawinti_form_css');
-		wp_enqueue_script('dawinti_js');
 	}
 
 	/**
@@ -192,9 +188,11 @@ class DaWinti extends Widget_Base {
                         
                         <?php
                             if($message_sent) {
-                                echo '<h3 id="tak-for-besked"> Tak for din besked. Vi vil svare tibage hurtigst muligt </h3>'
+                                echo '<div id="tak-for-besked">';
+								echo '<h3> Tak for din besked. Vi vil svare tibage hurtigst muligt </h3>';
+								echo '</div>';
                             } else {
-                                echo "<button type='submit' name='dawintisubmit' id='dawinti-booking-form-btn'>Send forespørgelse</button>"
+                                echo "<button type='submit' name='dawintisubmit' id='dawinti-booking-form-btn'>Send forespørgelse</button>";
                             }
                         ?>
                     </form>
@@ -238,6 +236,8 @@ class DaWinti extends Widget_Base {
 						wp_mail($to, $sendevent, $body);	
                         $message_sent = true;				
 
+					} else {
+						$message_sent = false;
 					}
 				
 				?>

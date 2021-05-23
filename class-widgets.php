@@ -7,13 +7,11 @@
  * @subpackage WordPress
  * @author     Drescher Rijna & Veli Aday
  * @copyright  2021 Drescher Rijna & Veli Aday
- * @license    ''
- * @link       ''
  * @since      1.0.0
  * php version 7.3.9
  */
 
-namespace ElementorDaWinti;
+namespace ElementorDawinti;
 
 // Security Note: Blocks direct access to the plugin PHP files.
 defined( 'ABSPATH' ) || die();
@@ -65,7 +63,7 @@ class Widgets {
 	 * @access private
 	 */
 	private function include_widgets_files() {
-		require_once 'widgets/class-dawinti.php';
+		require_once 'widgets/class-dawinti-form.php';
 	}
 
 	/**
@@ -79,7 +77,7 @@ class Widgets {
 	public function register_widgets() {
 		$this->include_widgets_files();
 
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\DaWinti() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Dawinti() );
 	}
 
 	/**

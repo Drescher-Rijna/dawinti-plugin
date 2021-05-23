@@ -6,10 +6,8 @@
  *
  * Plugin Name: Elementor Da Winti
  * Description: Da Winti Widgets
- * Plugin URI:  ''
  * Version:     1.0.0
  * Author:      Drescher Rijna & Veli Aday
- * Author URI:  ''
  * Text Domain: elementor-dawinti
  */
 

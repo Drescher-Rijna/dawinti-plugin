@@ -205,3 +205,21 @@ input[type=number] {
     font-weight: 400;
     letter-spacing: 1.5px;
 }
+
+#tak-for-besked {
+    border: #00b300 1px solid;
+    color: #00b300;
+    background-color: #87f887;
+    border-radius: 8px;
+    display: none;
+    padding: 25px 15px;
+    margin-bottom: 2em;
+    width: 100%;
+    max-width: 400px;
+}
+
+#tak-for-besked h3 {
+    font-family: 'Signika', sans-serif;
+    font-size: 1.2rem;
+    color: #00b300;
+}
