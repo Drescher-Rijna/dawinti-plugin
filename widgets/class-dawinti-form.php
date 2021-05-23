@@ -306,5 +306,86 @@ class Dawinti extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function _content_template() {} 
+	protected function _content_template() {
+		?>
+
+			<div id='dawinti-booking-form-container'>
+			    <div id='dawinti-booking-form-container-sub'>
+                    <h2 id='dawinti-booking-form-title'>
+                    Bookingforespørgsel
+                    </h2>
+                    <h3 id='dawinti-booking-form-subtitle'>
+                    Send en forespørgsel på en begivenhed eller arrangement.
+                    </h3>
+                    <form id='dawinti-booking-form' method='post' >
+                        <div id='dawinti-booking-form-begivenhed'>
+                            <label>
+                            Begivenhed
+                            </label>
+							
+								<select name='dawinti_event_type'>
+									<# _.each (options_list.option_list, function(option_item) { #>
+										<option value='{{option_item.option_value}}'>{{{option_item.option_contents}}}</option>
+									<# }); #>
+								<select> 		
+							
+                        </div>
+                            
+                        <div id='dawinti-booking-form-dato'>
+                            <label>
+                            Vælg dato
+                            </label>
+                            <input name='dawinti_event_date' type='date' required />
+                        </div>
+                            
+                        <div id='dawinti-booking-form-personer'>
+                            <label>
+                            Antal Personer
+                            </label>
+                            <input name='dawinti_people_amount' type='number' placeholder='Antal personer' />
+                        </div>
+                            
+                        <div id='dawinti-booking-form-navn'>
+                            <label>
+                            Dit navn
+                            </label>
+                            <input name='dawinti_sender_name' type='text' placeholder='Dit navn' />
+                        </div>
+                            
+                        <div id='dawinti-booking-form-nummer'>
+                            <label>
+                            Telefon
+                            </label>
+                            <input name='dawinti_phone_number' type='number' placeholder='+45 5678XXXX' />
+                        </div>
+                            
+                        <div id='dawinti-booking-form-email'>
+                            <label>
+                            E-mail
+                            </label>
+                            <input name='dawinti_sender_mail' type='text' placeholder='eksempel@gmail.com' />
+                        </div>
+
+                        <div id='dawinti-booking-form-besked'>
+                            <label>
+                            Din besked
+                            </label>
+                            <textarea name='dawinti_message' placeholder='Skriv en besked...'></textarea>
+                        </div>
+                        
+                        
+                           <# if($message_sent) { #>
+                                echo'<div id="tak-for-besked">
+								<h3> Tak for din besked. Vi vil svare tibage hurtigst muligt </h3>
+								</div>
+                            <#} else {#>
+                                <button type='submit' name='dawintisubmit' id='dawinti-booking-form-btn'>Send forespørgelse</button>
+                            <#}#>
+                        
+                    </form>
+				</div>
+			</div>
+
+		<?php
+	} 
 }
