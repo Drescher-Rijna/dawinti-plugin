@@ -119,46 +119,47 @@ class Dawinti extends Widget_Base {
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
-			$repeater = new Repeater();
+	
+		$repeater = new \Elementor\Repeater();
+	
+		$repeater->add_control(
+			'list_content', [
+				'label' => __( 'Title', 'Elementor Da Winti' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'List Title' , 'Elementor Da Winti' ),
+				'label_block' => true,
+			]
+		);
+	
+		$repeater->add_control(
+			'list_value', [
+				'label' => __( 'Content', 'Elementor Da Winti' ),
+				'type' => \Elementor\Controls_Manager::WYSIWYG,
+				'default' => __( 'List Content' , 'Elementor Da Winti' ),
+				'show_label' => true,
+			]
+		);
 
-			$repeater->add_control(
-				'option_value',
-				[
-					'label' => __( 'Option Value', 'Elementor Da Winti' ),
-					'type' => \Elementor\Controls_Manager::TEXT,
-					'default' => __( "The Option's Value", 'Elementor Da Winti' ),
-					'placeholder' => __( 'Value Attribute', 'Elementor Da Winti' ),
-					'label_block' => true,
-				]
-			);
-
-			$repeater->add_control(
-				'option_contents',
-				[
-					'label' => __( 'Option Contents', 'Elementor Da Winti' ),
-					'type' => \Elementor\Controls_Manager::TEXT,
-					'default' => __( "The Option's Contents", 'Elementor Da Winti' ),
-					'placeholder' => __( 'Option Contents', 'Elementor Da Winti' ),
-					'show_label' => false,
-				]
-			); 
-
-			$this->add_control(
-				'options_list',
-				[
-					'label' => __( 'Repeater List', 'Elementor Da Winti' ),
-					'type' => \Elementor\Controls_Manager::REPEATER,
-					'fields' => $repeater->get_controls(),
-					'default' => [
-						[]
+	
+		$this->add_control(
+			'list',
+			[
+				'label' => __( 'Repeater List', 'Elementor Da Winti' ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater->get_controls(),
+				'default' => [
+					[
+						'list_content' => __( 'Begivenhed', 'Elementor Da Winti'),
+						'list_value' => __( 'type. Click the edit button to change this text.', 'Elementor Da Winti' ),
 					],
-					'title_field' => '{{{ option_contents }}}'
-				]
-			); 
+				],
+				'title_field' => '{{{ list_content }}}',
+			]
+		);
+	
+		$this->end_controls_section();
 
 		
-
-		$this->end_controls_section();
 	}
 
 	/**
@@ -171,7 +172,7 @@ class Dawinti extends Widget_Base {
 	 * @access protected
 	 */
 	protected function render() {
-			$options_list = $this->get_settings_for_display('options_list');
+			$settings = $this->get_settings_for_display();
 		?>
 			<div id='dawinti-booking-form-container'>
 			    <div id='dawinti-booking-form-container-sub'>
@@ -187,11 +188,14 @@ class Dawinti extends Widget_Base {
                             Begivenhed
                             </label>
 							<?php
-									echo "<select name='dawinti_event_type'>";
-										foreach ($options_list as $option_item) {
-											echo "<option value='{$option_item['option_value']}'>{$option_item['option_contents']}</option>";
+							if ( $settings['list'] ) {
+								echo "<select name='dawinti_event_type'>";
+										foreach (  $settings['list'] as $item ) {
+											echo "<option value='{$item['option_value']}'>{$item['option_content']}</option>";
 										}
-									echo "<select>";		
+								echo "<select>";
+							}
+											
 							?>
                         </div>
                             
@@ -322,13 +326,14 @@ class Dawinti extends Widget_Base {
                             <label>
                             Begivenhed
                             </label>
-							
-								<select name='dawinti_event_type'>
-									<# _.each (options_list.option_list, function(option_item) { #>
-										<option value='{{option_item.option_value}}'>{{{option_item.option_contents}}}</option>
-									<# }); #>
-								<select> 		
-							
+
+								<# if ( settings.list.length ) { #>
+									<select class="elementor-repeater-item-{{ item._id }}" name='dawinti_event_type'>
+										<# _.each( settings.list, function( item ) { #>
+											<option value='{{{ item.list_value }}}'>{{{ item.list_content }}}</option>
+										<# }); #>
+									<select> 
+								<# } #>						
                         </div>
                             
                         <div id='dawinti-booking-form-dato'>
@@ -389,3 +394,5 @@ class Dawinti extends Widget_Base {
 		<?php
 	} 
 }
+
+
