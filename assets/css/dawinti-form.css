@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Basic&family=Signika:wght@300;400;500;600;700&display=swap');
+
+/*
+font-family: 'Signika', sans-serif;
+font-family: 'Gentium Book Basic', serif;
+*/
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#dawinti-booking-form-container * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gentium Book Basic', serif;
+    font-size: 1rem;
+}
+
+#dawinti-booking-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#dawinti-booking-form-container-sub {
+    max-width: 1000px;
+    width: 100%;
+}
+
+#dawinti-booking-form-container-sub h2 {
+    font-family: 'Signika', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 1.5px;
+
+}
+
+#dawinti-booking-form-container-sub h3 {
+    font-family: 'Signika', sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+}
+
+#dawinti-booking-form div {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+#dawinti-booking-form input,
+#dawinti-booking-form select,
+#dawinti-booking-form option,
+#dawinti-booking-form input textarea {
+    padding: 10px 5px;
+}
+
+
+/* GRID */
+#dawinti-booking-form-begivenhed {
+    grid-area: begivenhed;
+}
+
+#dawinti-booking-form-dato {
+    grid-area: dato;
+}
+
+#dawinti-booking-form-personer {
+    grid-area: personer;
+}
+
+#dawinti-booking-form-navn {
+    grid-area: navn;
+}
+
+#dawinti-booking-form-nummer {
+    grid-area: nummer;
+}
+
+#dawinti-booking-form-email {
+    grid-area: email;
+}
+
+#dawinti-booking-form-besked {
+    grid-area: besked;
+}
+
+#dawinti-booking-form-besked textarea {
+    min-height: 150px;
+    padding: 10px 10px;
+    max-width: 1000px;
+}
+
+#dawinti-booking-form-btn {
+    grid-area: button;
+}
+
+#dawinti-booking-form {
+    margin-top: 1em;
+    display: grid;
+    column-gap: 30px;
+    row-gap: 20px;
+    grid-template-areas: 
+                        "begivenhed dato personer"
+                        "navn nummer email"
+                        "besked besked besked"
+                        "button . .";
+}
+
+
+/* BUTTON */
+#dawinti-booking-form-btn  {
+    font-family: 'Signika', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white;
+    padding: 10px 0;
+    border-radius: 50px;
+    outline: none;
+    border: #F8BB3A solid 2px;
+    background-color: #F8BB3A;
+    cursor: pointer;
+}
+
+#dawinti-booking-form-btn:hover {
+    background-color: transparent;
+    transition: all .2s ease-in-out;
+    color: #F8BB3A;
+    border-color: #F8BB3A;
+}
+
+#dawinti-booking-form-btn:active {
+    background-color: transparent;
+    color: #fcd200;
+    border-color: #fcd200;
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+    #dawinti-booking-form-container-sub {
+        max-width: 550px;
+        width: 100%;
+    }
+
+    #dawinti-booking-form-besked textarea {
+        max-width: 550px;
+    }
+
+    #dawinti-booking-form {
+        margin-top: 1em;
+        display: grid;
+        column-gap: 30px;
+        row-gap: 20px;
+        grid-template-areas: 
+                            "begivenhed dato"
+                            "personer navn"
+                            "nummer email"
+                            "besked besked"
+                            "button .";
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+    #dawinti-booking-form-container {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    #dawinti-booking-form-besked textarea {
+        max-width: 100%;
+    }
+    
+    #dawinti-booking-form {
+        margin-top: 1em;
+        display: grid;
+        column-gap: 30px;
+        row-gap: 20px;
+        grid-template-areas: 
+                            "begivenhed"
+                            "dato"
+                            "personer"
+                            "navn"
+                            "nummer"
+                            "email"
+                            "besked"
+                            "button";
+    }
+}
+
+
+#dawinti-booking-form div label {
+    font-family: 'Signika', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+}
