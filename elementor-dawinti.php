@@ -1,100 +1,21 @@
 <?php
 /**
- * Da Winti class.
+ * Elementor Da Winti WordPress Plugin
  *
- * @category   Class
- * @package    ElementorDawinti
- * @subpackage WordPress
- * @author     Drescher Rijna & Veli Aday
- * @copyright  2021 Drescher Rijna & Veli Aday
- * @license    ''
- * @link       ''
- * @since      1.0.0
- * php version 7.3.9
+ * @package ElementorDawinti
+ *
+ * Plugin Name: Elementor Da Winti
+ * Description: Da Winti Widgets
+ * Plugin URI:  ''
+ * Version:     1.0.0
+ * Author:      Drescher Rijna & Veli Aday
+ * Author URI:  ''
+ * Text Domain: elementor-dawinti
  */
 
-namespace ElementorDaWinti;
-
-// Security Note: Blocks direct access to the plugin PHP files.
-defined( 'ABSPATH' ) || die();
+define( 'ELEMENTOR_DAWINTI', __FILE__ );
 
 /**
- * Class Plugin
- *
- * Main Plugin class
- *
- * @since 1.0.0
+ * Include the Elementor_Awesomesauce class.
  */
-class Widgets {
-
-	/**
-	 * Instance
-	 *
-	 * @since 1.0.0
-	 * @access private
-	 * @static
-	 *
-	 * @var Plugin The single instance of the class.
-	 */
-	private static $instance = null;
-
-	/**
-	 * Instance
-	 *
-	 * Sikre at kun en instance af classen er loaded eller kan blive loaded.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 * @return Plugin En instance af classen.
-	 */
-	public static function instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
-	}
-
-	/**
-	 * Inkluderer Widgets filer
-	 *
-	 * Load widgets filer
-	 *
-	 * @since 1.0.0
-	 * @access private
-	 */
-	private function include_widgets_files() {
-		require_once 'widgets/class-dawinti.php';
-	}
-
-	/**
-	 * Registere Widgets
-	 *
-	 * Registere ny Elementor widgets.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 */
-	public function register_widgets() {
-		$this->include_widgets_files();
-
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\DaWinti() );
-	}
-
-	/**
-	 *  Plugin class constructor
-	 *
-	 * Register plugin action hooks and filters
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 */
-	public function __construct() {
-		// Register the widgets.
-		add_action( 'elementor/widgets/widgets_registered', array( $this, 'register_widgets' ) );
-	}
-}
-
-// Instantiate the Widgets class.
-Widgets::instance();
+require plugin_dir_path( ELEMENTOR_DAWINTI ) . 'class-elementor-dawinti.php';
