@@ -13,7 +13,7 @@
  * php version 7.3.9
  */
 
-namespace ElementorAwesomesauce\Widgets;
+namespace ElementorDaWinti\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -26,7 +26,7 @@ defined( 'ABSPATH' ) || die();
  *
  * @since 1.0.0
  */
-class Awesomesauce extends Widget_Base {
+class DaWinti extends Widget_Base {
 
 	/**
 	 * Class constructor.
@@ -37,10 +37,10 @@ class Awesomesauce extends Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'dawinti', plugins_url( '/assets/css/dawinti.css', ELEMENTOR_AWESOMESAUCE ), array(), '1.0.0' );
-		wp_register_script( 'dawinti_js', plugins_url( '/assets/js/dawinti.js', ELEMENTOR_AWESOMESAUCE ), array(), '1.0.0' );
+		wp_register_style( 'dawinti_form_css', plugins_url( '/assets/css/dawinti-form.css', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
+		wp_register_script( 'dawinti_js', plugins_url( '/assets/js/dawinti.js', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
 
-		wp_enqueue_style('dawinti');
+		wp_enqueue_style('dawinti_form_css');
 		wp_enqueue_script('dawinti_js');
 	}
 
