@@ -1,6 +1,6 @@
 // VARIABLER
 var rum = document.getElementById("select-rum");
-let rumNummer = null;
+let rumNummer = parseInt(rum.value);
 var rum1 = true;
 
 var antalPers = document.getElementById("antal-personer");

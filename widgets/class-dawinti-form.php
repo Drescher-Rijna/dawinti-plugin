@@ -36,10 +36,8 @@ class Dawinti extends Widget_Base {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'dawinti_form_css', plugins_url( '/assets/css/dawinti-form.css', ELEMENTOR_DAWINTI ), array(), 'all' );
-		wp_register_script( 'dawinti_form_js', plugins_url( '/assets/js/dawinti.js', ELEMENTOR_DAWINTI ), array(), 'all' );
 
 		wp_enqueue_style('dawinti_form_css');
-		wp_enqueue_script('dawinti_form_js');
 
 	}
 
@@ -186,16 +184,18 @@ class Dawinti extends Widget_Base {
                             <label>
                             Begivenhed
                             </label>
-							<?php
-							if ( $settings['list'] ) {
-								echo "<select name='dawinti_event_type'>";
-										foreach (  $settings['list'] as $item ) {
-											echo "<option value='{$item['option_value']}'>{$item['option_content']}</option>";
-										}
-								echo "<select>";
-							}
-											
-							?>
+							<select name='dawinti_event_type'>
+								<option value="fest">Fest</option>
+								<option value="jubilæum">Jubilæum</option>
+								<option value="konfirmation">Konfirmation</option>
+								<option value="begravelse">Begravelse</option>
+								<option value="business møde">Business møde</option>
+								<option value="fødselsdag">Fødselsdag</option>
+								<option value="bryllup">Bryllup</option>
+								<option value="artist">Artist</option>
+								<option value="koncert">Koncert</option>
+								<option value="andet">Andet</option>
+							<select>
                         </div>
                             
                         <div id='dawinti-booking-form-dato'>
