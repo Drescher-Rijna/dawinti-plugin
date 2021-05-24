@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Basic&family=Signika:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+@import url("https://use.typekit.net/zcq2suq.css");
+
+/*
+font-family: 'Signika', sans-serif;
+font-family: 'Open Sans', sans-serif;
+*/
+
+#dawinti-form-container * {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: black;
+}
+
+#dawinti-form-container select {
+    border: none;
+    outline: none;
+    border: 1px black solid;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+}
+
+#dawinti-form-container option {
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+}
+
+#dawinti-form-container input {
+    border: none;
+    outline: none;
+    border: 1px black solid;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+
+}
+
+#dawinti-form-container h1, 
+#dawinti-form-container h2, 
+#dawinti-form-container h3, 
+#dawinti-form-container h4, 
+#dawinti-form-container h5, 
+#dawinti-form-container h6 {
+    font-family: delaney, sans-serif;
+    font-weight: 700;
+}
+
+#dawinti-form-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 1em;
+}
+
+#dawinti-beregner-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    width: 100%;
+    margin-top: 2em;
+    margin-bottom: 0em;
+}
+
+#valg-antal-children {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+}
+
+#antal-personer-total{
+    display: flex;
+    flex-direction: column;
+}
+
+#valg-antal-children p {
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+}
+
+#valg-datoer-container {
+    display: flex;
+    flex-direction: column;
+}
+
+h3 {
+    margin-bottom: 7px;
+}
+
+.dawinti-selector {
+    display: flex;
+    flex-direction: column;
+}
+
+.dawinti-selector h3 {
+    text-align: center;
+    
+}
+
+select, input {
+    padding: 10px 5px 10px 5px;
+}
+
+.start-dato {
+    margin-bottom: 5px;
+}
+
+.slut-dato {
+    margin-bottom: 5px;
+}
+
+#dawinti-form-container label {
+    font-size: 1rem;
+}
+
+#dawinti-form-container h3, h4 {
+    font-size: 1.2rem;
+    
+}
+
+#dawinti-form-container option, input, #valg-datoer-container input {
+    font-size: 1rem;
+    padding: 12px 12px 10px 5px;
+    border-radius: 5px;
+}
+
+#dawinti-form-container  select {
+    font-size: 1rem;
+    padding: 12px 12px 10px 5px;
+    border-radius: 5px;
+}
+
+#total-pris {
+    font-size: 1.3rem;
+    text-align: left;
+    padding: 10px 0px 10px 10px;
+    
+}
+
+#total-pris-container {
+    border: 1px #D3D3D3 solid;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 1em;
+}
+
+#dawinti-beregner-form button {
+    font-size: 1rem;
+    font-weight: 600;
+  	width: 150px;
+  	height: 50px;
+    color: white;
+    padding: 15px 30px 15px 30px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 0;
+    border-radius: 50px;
+    outline: none;
+    border: #F8BB3A solid 2px;
+    background-color: #F8BB3A;
+    cursor: pointer;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	text-align: center;
+}
+
+#dawinti-beregner-form button:hover {
+    background-color: transparent;
+    transition: all .2s ease-in-out;
+    color: #F8BB3A;
+    border-color: #F8BB3A;
+}
+
+#dawinti-beregner-form button:active {
+    background-color: transparent;
+    color: #fcd200;
+    border-color: #fcd200;
+}
+
+
+#error-message-container {
+    border: #D8000C 1px solid;
+    color: #D8000C;
+    background-color: #FFD2D2;
+    border-radius: 8px;
+    display: none;
+    padding: 25px 15px;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    width: 100%;
+    max-width: 400px;
+}
+
+#start-dato-container,
+#slut-dato-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+@media only screen and (min-width: 768px) {
+    #antal-personer-total {
+        grid-area: personer-total;
+    }
+
+    #valg-antal-children {
+        grid-area: personer-children;
+    }
+
+    #valg-datoer-container {
+        grid-area: datoer;
+    }
+
+    #dawinti-beregner-form button {
+        grid-area: knap;
+    }
+    #dawinti-beregner-form {
+        max-width: 100%;
+    }
+
+    #dawinti-beregner-form {
+        display: grid;
+        column-gap: 3em;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+                            "personer-total datoer"
+                            "personer-children datoer"
+                            "knap knap";
+    }
+}
+
+*/
+
+

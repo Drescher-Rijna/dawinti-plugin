@@ -54,6 +54,8 @@ class Widgets {
 		return self::$instance;
 	}
 
+	
+
 	/**
 	 * Inkluderer Widgets filer
 	 *
@@ -64,7 +66,9 @@ class Widgets {
 	 */
 	private function include_widgets_files() {
 		require_once 'widgets/class-dawinti-form.php';
+		require_once 'widgets/class-dawinti-beregner.php';
 	}
+	
 
 	/**
 	 * Registere Widgets
@@ -78,6 +82,7 @@ class Widgets {
 		$this->include_widgets_files();
 
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Dawinti() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Dawinti_Beregner() );
 	}
 
 	/**
