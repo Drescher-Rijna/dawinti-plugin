@@ -39,12 +39,16 @@ font-family: 'Gentium Book Basic', serif;
 
 #dawinti-booking-form-container #dawinti-booking-form-container-sub h1, 
 #dawinti-booking-form-container #dawinti-booking-form-container-sub h2, 
-#dawinti-booking-form-container #dawinti-booking-form-container-sub h3, 
 #dawinti-booking-form-container #dawinti-booking-form-container-sub h4, 
 #dawinti-booking-form-container #dawinti-booking-form-container-sub h5, 
 #dawinti-booking-form-container #dawinti-booking-form-container-sub h6 {
     font-family: delaney, sans-serif;
     font-weight: 700;
+}
+
+#dawinti-booking-form-container #dawinti-booking-form-container-sub h3 {
+    font-family: delaney, sans-serif;
+    font-weight: 400;
 }
 
 
@@ -157,17 +161,17 @@ input[type=number] {
 
 /* BUTTON */
 #dawinti-booking-form-btn  {
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 700;
     color: white;
-    padding: 15px 30px 15px 30px;
+    padding: 15px 0px 15px 0px;
     border-radius: 50px;
-    width: 150px;
-  	height: 50px;
+    width: 300px;
     outline: none;
     border: #F8BB3A solid 2px;
     background-color: #F8BB3A;
     cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #dawinti-booking-form-btn:hover {

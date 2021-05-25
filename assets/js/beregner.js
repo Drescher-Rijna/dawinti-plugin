@@ -390,7 +390,7 @@ document.getElementById("dawinti-beregner-form").addEventListener("submit", (e) 
         pris = Personer * totalDoegn;
     }
 
-    document.getElementById("total-pris").innerHTML = "Det vil koste: " + pris + " kr.";
+    document.getElementById("total-pris").innerHTML = "Pris: " + pris + " kr.";
 });
 
 

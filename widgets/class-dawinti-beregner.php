@@ -35,7 +35,7 @@ class Dawinti_Beregner extends Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'beregnercss', plugins_url( '/assets/css/beregner.css', ELEMENTOR_DAWINTI ), array(), 'all' );
+		wp_register_style( 'beregnercss', plugins_url( '/assets/css/beregner.css', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
         wp_register_script( 'beregnerjs', plugins_url( '/assets/js/beregner.js', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
 
 		
@@ -220,7 +220,7 @@ class Dawinti_Beregner extends Widget_Base {
             <!-- Hvor den totale pris vil blive fremvist -->
             <div id="total-pris-container">
                 <p id="total-pris">
-                    Det vil kost:
+                    Pris:
                 </p>
             </div>
         </div>
