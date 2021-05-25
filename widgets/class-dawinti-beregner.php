@@ -35,11 +35,10 @@ class Dawinti_Beregner extends Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'dawinti_beregner_css', plugins_url( '/assets/css/beregner.css', ELEMENTOR_DAWINTI ), array(), 'all' );
-        wp_register_script( 'dawinti_beregner_js', plugins_url( '/assets/js/beregner.js', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
+		wp_register_style( 'beregnercss', plugins_url( '/assets/css/beregner.css', ELEMENTOR_DAWINTI ), array(), 'all' );
+        wp_register_script( 'beregnerjs', plugins_url( '/assets/js/beregner.js', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
 
-		wp_enqueue_style('dawinti_beregner_css');
-        wp_enqueue_script('dawinti_beregner_js');
+		
 	}
 	
 
@@ -104,14 +103,14 @@ class Dawinti_Beregner extends Widget_Base {
 	 * Enqueue styles & scripts.
 	 */
 	 public function get_style_depends() {
-		return array('dawinti_beregner_css');
+		return array('beregnercss');
 	}
 
 	/**
 	 * Enqueue styles.
 	 */
 	 public function get_script_depends() {
-		return array('dawinti_beregner_js');
+		return array('beregnerjs');
 	}
 	
 

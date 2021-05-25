@@ -35,10 +35,8 @@ class Dawinti extends Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'dawinti_form_css', plugins_url( '/assets/css/dawinti-form.css', ELEMENTOR_DAWINTI ), array(), 'all' );
-
-		wp_enqueue_style('dawinti_form_css');
-
+		wp_register_style( 'dawintiformcss', plugins_url( '/assets/css/dawinti-form.css', ELEMENTOR_DAWINTI ), array(), 'all' );
+		wp_register_script( 'formjs', plugins_url( '/assets/js/dawinti.js', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
 	}
 
 	/**
@@ -97,6 +95,22 @@ class Dawinti extends Widget_Base {
 	public function get_categories() {
 		return array( 'general' );
 	}
+
+
+	/**
+	 * Enqueue styles & scripts.
+	 */
+	 public function get_style_depends() {
+		return array('dawintiformcss');
+	}
+
+	/**
+	 * Enqueue styles.
+	 */
+	 public function get_script_depends() {
+		return array('formjs');
+	}
+
 	
 
 	/**
@@ -172,6 +186,15 @@ class Dawinti extends Widget_Base {
 			$settings = $this->get_settings_for_display();
 		?>
 			<div id='dawinti-booking-form-container'>
+				<?php
+                    if($message_sent === true):
+				?>
+					<div id="tak-for-besked">
+						<h3> Tak for din besked. Vi vil svare tibage hurtigst muligt </h3>
+					</div>
+                <?php         
+                    else:
+                ?>
 			    <div id='dawinti-booking-form-container-sub'>
                     <h2 id='dawinti-booking-form-title'>
                     Bookingforespørgsel
@@ -179,7 +202,7 @@ class Dawinti extends Widget_Base {
                     <h3 id='dawinti-booking-form-subtitle'>
                     Send en forespørgsel på en begivenhed eller arrangement.
                     </h3>
-                    <form id='dawinti-booking-form' method='post' >
+                    <form action="" id='dawinti-booking-form' method='POST' >
                         <div id='dawinti-booking-form-begivenhed'>
                             <label>
                             Begivenhed
@@ -216,7 +239,7 @@ class Dawinti extends Widget_Base {
                             <label>
                             Dit navn
                             </label>
-                            <input name='dawinti_sender_name' type='text' placeholder='Dit navn' />
+                            <input name='dawinti_sender_name' type='text' placeholder='Dit navn' required  />
                         </div>
                             
                         <div id='dawinti-booking-form-nummer'>
@@ -230,68 +253,54 @@ class Dawinti extends Widget_Base {
                             <label>
                             E-mail
                             </label>
-                            <input name='dawinti_sender_mail' type='text' placeholder='eksempel@gmail.com' />
+                            <input name='dawinti_sender_mail' type='text' placeholder='eksempel@gmail.com' required  />
                         </div>
 
                         <div id='dawinti-booking-form-besked'>
                             <label>
                             Din besked
                             </label>
-                            <textarea name='dawinti_message' placeholder='Skriv en besked...'></textarea>
+                            <textarea name='dawinti_message' placeholder='Skriv en besked...' required></textarea>
                         </div>
-                        
-                        <?php
-                            if($message_sent) {
-                                echo '<div id="tak-for-besked">';
-								echo '<h3> Tak for din besked. Vi vil svare tibage hurtigst muligt </h3>';
-								echo '</div>';
-                            } else {
-                                echo "<button type='submit' name='dawintisubmit' id='dawinti-booking-form-btn'>Send forespørgelse</button>";
-                            }
-                        ?>
+
+						<button type='submit' name='dawintisubmit' id='dawinti-booking-form-btn'>Send forespørgelse</button>
                     </form>
 				</div>
 			</div>
-				
 				<?php
-				//echo "<pre>";
+					endif;
+				?>
 
-				//	print_r($_POST);
+				<!-- FUNKTION DER SENDER MAIL -->
+				<?php
+					$message_sent == false;
 
-				//echo "</pre>";
-
-                    $message_sent = false;
-
-
-					if(isset($_POST['dawintisubmit'])) {
-
-						$to = 'drescherrijna@gmail.com';
+					if(isset($_POST['dawintisubmit']) && $_POST['dawinti_sender_mail'] != '') {
+							$to = 'drescherrijna@gmail.com';
 	
-						$sendevent = $_POST['dawinti_event_type'];
-						$senddate = $_POST['dawinti_event_date'];
-						$sendnumofpeople = $_POST['dawinti_people_amount'];
-						$sendername = $_POST['dawinti_sender_name'];
-						$sendernumber = $_POST['dawinti_phone_number'];
-						$sendfrom = $_POST['dawinti_sender_mail'];
-						$sendmess = $_POST['dawinti_message'];
-						
-	
-						$body = "";
-	
-						$body .= "Fra: " . $sendername . "\r\n";
-						$body .= "Begivenhed: " . $sendevent . "\r\n";
-						$body .= "Dato: " . $senddate . "\r\n";
-						$body .= "Antal deltagere: " . $sendnumofpeople . "\r\n";
-						$body .= "Besked: " . $sendmess . "\r\n";
-						$body .= "Email: " . $sendfrom . "\r\n";
-						$body .= "Nummer: " . $sendernumber . "\r\n";
-	
-						
-						wp_mail($to, $sendevent, $body);	
-                        $message_sent = true;				
+							$sendevent = $_POST['dawinti_event_type'];
+							$senddate = $_POST['dawinti_event_date'];
+							$sendnumofpeople = $_POST['dawinti_people_amount'];
+							$sendername = $_POST['dawinti_sender_name'];
+							$sendernumber = $_POST['dawinti_phone_number'];
+							$sendfrom = $_POST['dawinti_sender_mail'];
+							$sendmess = $_POST['dawinti_message'];
+							
+		
+							$body = "";
+		
+							$body .= "Fra: " . $sendername . "\r\n";
+							$body .= "Begivenhed: " . $sendevent . "\r\n";
+							$body .= "Dato: " . $senddate . "\r\n";
+							$body .= "Antal deltagere: " . $sendnumofpeople . "\r\n";
+							$body .= "Besked: " . $sendmess . "\r\n";
+							$body .= "Email: " . $sendfrom . "\r\n";
+							$body .= "Nummer: " . $sendernumber . "\r\n";
+		
+							
+							wp_mail($to, $sendevent, $body);	
+							$message_sent = true;	
 
-					} else {
-						$message_sent = false;
 					}
 				
 				?>

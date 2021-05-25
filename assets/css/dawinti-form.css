@@ -1,9 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Basic&family=Signika:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+@import url("https://use.typekit.net/zcq2suq.css");
 
 /*
 font-family: 'Signika', sans-serif;
 font-family: 'Gentium Book Basic', serif;
 */
+
+#dawinti-booking-form-container select {
+    border: none;
+    outline: none;
+    border: 1px black solid;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+}
+
+#dawinti-booking-form-container option {
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+}
+
+#dawinti-booking-form-container input {
+    border: none;
+    outline: none;
+    border: 1px black solid;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+
+}
+
+#dawinti-booking-form-container h1, 
+#dawinti-booking-form-container h2, 
+#dawinti-booking-form-container h3, 
+#dawinti-booking-form-container h4, 
+#dawinti-booking-form-container h5, 
+#dawinti-booking-form-container h6 {
+    font-family: delaney, sans-serif;
+    font-weight: 700;
+}
+
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -18,11 +55,12 @@ input[type=number] {
 }
 
 #dawinti-booking-form-container * {
+    box-sizing: border-box;
+    font-size: 1rem;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Gentium Book Basic', serif;
-    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    color: black;
 }
 
 #dawinti-booking-form-container {
@@ -37,17 +75,12 @@ input[type=number] {
 }
 
 #dawinti-booking-form-container-sub h2 {
-    font-family: 'Signika', sans-serif;
     font-size: 2rem;
-    letter-spacing: 1.5px;
 
 }
 
 #dawinti-booking-form-container-sub h3 {
-    font-family: 'Signika', sans-serif;
-    font-weight: 300;
     font-size: 1.2rem;
-    letter-spacing: 1.5px;
 }
 
 #dawinti-booking-form div {
@@ -118,12 +151,13 @@ input[type=number] {
 
 /* BUTTON */
 #dawinti-booking-form-btn  {
-    font-family: 'Signika', sans-serif;
     font-size: 1.3rem;
-    font-weight: 600;
+    font-weight: 700;
     color: white;
-    padding: 10px 0;
+    padding: 15px 30px 15px 30px;
     border-radius: 50px;
+    width: 150px;
+  	height: 50px;
     outline: none;
     border: #F8BB3A solid 2px;
     background-color: #F8BB3A;
@@ -139,8 +173,8 @@ input[type=number] {
 
 #dawinti-booking-form-btn:active {
     background-color: transparent;
-    color: #fcd200;
-    border-color: #fcd200;
+    color: #F8BB3A;
+    border-color: #F8BB3A;
 }
 
 
@@ -200,7 +234,6 @@ input[type=number] {
 
 
 #dawinti-booking-form div label {
-    font-family: 'Signika', sans-serif;
     font-size: 1rem;
     font-weight: 400;
     letter-spacing: 1.5px;
@@ -219,7 +252,6 @@ input[type=number] {
 }
 
 #tak-for-besked h3 {
-    font-family: 'Signika', sans-serif;
     font-size: 1.2rem;
     color: #00b300;
 }
