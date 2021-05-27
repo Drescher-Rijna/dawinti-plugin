@@ -294,7 +294,6 @@ class Dawinti extends Widget_Base {
 							$body .= "Besked: " . $sendmess . "\r\n";
 							$body .= "Email: " . $sendfrom . "\r\n";
 							$body .= "Nummer: " . $sendernumber . "\r\n";
-		
 							
 							wp_mail($to, $sendevent, $body);	
 
