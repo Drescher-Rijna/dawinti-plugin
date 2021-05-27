@@ -36,7 +36,6 @@ class Dawinti extends Widget_Base {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'dawintiformcss', plugins_url( '/assets/css/dawinti-form.css', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
-		wp_register_script( 'dawintiformjs', plugins_url( '/assets/js/dawinti.js', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
 	}
 
 	/**
@@ -162,6 +161,7 @@ class Dawinti extends Widget_Base {
                     <h3 id='dawinti-booking-form-subtitle'>
                     Send en forespørgsel på en begivenhed eller arrangement.
                     </h3>
+					<p id="notice-dawinti"><u>Bemærk:</u> Send helst besked 5 til 7 dage inden begivenheden skal finde sted </p>
                     <form action="" id='dawinti-booking-form' method='POST' >
                         <div id='dawinti-booking-form-begivenhed'>
                             <label>
@@ -186,7 +186,8 @@ class Dawinti extends Widget_Base {
                             <label>
                             Vælg dato
                             </label>
-                            <input name='dawinti_event_date' type='date' required />
+							
+                            <input id="dawinti-event-date" name='dawinti_event_date' type='date' required />
                         </div>
                             
                         <div id='dawinti-booking-form-personer'>
@@ -214,14 +215,14 @@ class Dawinti extends Widget_Base {
                             <label>
                             E-mail
                             </label>
-                            <input name='dawinti_sender_mail' type='text' placeholder='eksempel@gmail.com' required  />
+                            <input id="dawinti-email" name='dawinti_sender_mail' type='text' placeholder='eksempel@gmail.com' required  />
                         </div>
 
                         <div id='dawinti-booking-form-besked'>
                             <label>
                             Din besked
                             </label>
-                            <textarea name='dawinti_message' placeholder='Skriv en besked...' required></textarea>
+                            <textarea id="dawinti-besked" name='dawinti_message' placeholder='Skriv en besked...' required></textarea>
                         </div>
 
 						<button type='submit' name='dawintisubmit' id='dawinti-booking-form-btn'>Send forespørgelse</button>
@@ -230,6 +231,41 @@ class Dawinti extends Widget_Base {
 				<div id="tak-for-besked">
 						<h3> Tak for din besked. Vi vil svare tibage hurtigst muligt </h3>
 				</div>
+
+				<script>
+						document.getElementById("dawinti-booking-form-btn").addEventListener("click", mailSend);
+
+						function mailSend() {
+
+							var besked = document.getElementById('dawinti-besked').value;
+							var email = document.getElementById('dawinti-email').value;
+
+							if(besked != '' && email != '') {
+								document.getElementById('dawinti-booking-form-btn').style.display = "none";
+								document.getElementById('tak-for-besked').style.display = "block";
+							}
+							
+						}
+
+						//BRUGEREN SKAL IKKE KUNNE SENDE EN FORESPØRGSEL OM ET EVENT TIDLIGERE END EN UGE PÅ FORHÅND
+						var dtToday = new Date();
+							
+						var month = dtToday.getMonth() + 1;
+						var day = dtToday.getDate();
+						var year = dtToday.getFullYear();
+
+							if(month < 10) {
+								month = '0' + month.toString();
+							}
+								
+							if(day < 10) {
+								day = '0' + day.toString();
+							}
+								
+							
+						var minDate = year + '-' + month + '-' + day;
+						document.getElementById('dawinti-event-date').setAttribute('min', minDate);
+				</script>
 			</div>
 
 				<!-- FUNKTION DER SENDER MAIL -->
@@ -261,6 +297,9 @@ class Dawinti extends Widget_Base {
 		
 							
 							wp_mail($to, $sendevent, $body);	
+
+							header("Location: https://dawinti.drescher-rijna.dk/arrangementer/");
+    						exit;
 
 					}
 				
