@@ -36,7 +36,7 @@ class Dawinti extends Widget_Base {
 		parent::__construct( $data, $args );
 
 		wp_register_style( 'dawintiformcss', plugins_url( '/assets/css/dawinti-form.css', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
-		wp_register_script( 'formjs', plugins_url( '/assets/js/dawinti.js', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
+		wp_register_script( 'dawintiformjs', plugins_url( '/assets/js/dawinti.js', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
 	}
 
 	/**
@@ -104,12 +104,8 @@ class Dawinti extends Widget_Base {
 		return array('dawintiformcss');
 	}
 
-	/**
-	 * Enqueue styles.
-	 */
-	 public function get_script_depends() {
-		return array('formjs');
-	}
+
+
 
 	
 
@@ -126,50 +122,22 @@ class Dawinti extends Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => __( 'Content', 'Elementor Da Winti' ),
+				'label' => __( 'Options', 'Da Winti Form' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
-	
-		$repeater = new \Elementor\Repeater();
-	
-		$repeater->add_control(
-			'list_content', [
-				'label' => __( 'Title', 'Elementor Da Winti' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'List Title' , 'Elementor Da Winti' ),
-				'label_block' => true,
-			]
-		);
-	
-		$repeater->add_control(
-			'list_value', [
-				'label' => __( 'Content', 'Elementor Da Winti' ),
-				'type' => \Elementor\Controls_Manager::WYSIWYG,
-				'default' => __( 'List Content' , 'Elementor Da Winti' ),
-				'show_label' => true,
-			]
-		);
 
-	
 		$this->add_control(
-			'list',
+			'mail_to',
 			[
-				'label' => __( 'Repeater List', 'Elementor Da Winti' ),
-				'type' => \Elementor\Controls_Manager::REPEATER,
-				'fields' => $repeater->get_controls(),
-				'default' => [
-					[
-						'list_content' => __( 'Begivenhed', 'Elementor Da Winti'),
-						'list_value' => __( 'type. Click the edit button to change this text.', 'Elementor Da Winti' ),
-					],
-				],
-				'title_field' => '{{{ list_content }}}',
+				'label' => __( 'Hvem skal modtage mailen', 'Da Winti Form' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'eksempel@gmail.com', 'Da Winti Form' ),
+				'placeholder' => __( 'eksempel@gmail.com', 'Da Winti Form' ),
 			]
 		);
-	
-		$this->end_controls_section();
 
+		$this->end_controls_section();
 		
 	}
 
@@ -185,16 +153,8 @@ class Dawinti extends Widget_Base {
 	protected function render() {
 			$settings = $this->get_settings_for_display();
 		?>
+			
 			<div id='dawinti-booking-form-container'>
-				<?php
-                    if($message_sent === true):
-				?>
-					<div id="tak-for-besked">
-						<h3> Tak for din besked. Vi vil svare tibage hurtigst muligt </h3>
-					</div>
-                <?php         
-                    else:
-                ?>
 			    <div id='dawinti-booking-form-container-sub'>
                     <h2 id='dawinti-booking-form-title'>
                     Bookingforespørgsel
@@ -207,16 +167,17 @@ class Dawinti extends Widget_Base {
                             <label>
                             Begivenhed
                             </label>
-							<select name='dawinti_event_type'>
-								<option value="fest">Fest</option>
-								<option value="jubilæum">Jubilæum</option>
-								<option value="konfirmation">Konfirmation</option>
+							<select name='dawinti_event_type' required>
+								<option value="" disabled selected>Vælg venligst...</option>
 								<option value="begravelse">Begravelse</option>
-								<option value="business møde">Business møde</option>
-								<option value="fødselsdag">Fødselsdag</option>
 								<option value="bryllup">Bryllup</option>
-								<option value="artist">Artist</option>
+								<option value="business møde">Business møde</option>
+								<option value="fest">Fest</option>
+								<option value="fødselsdag">Fødselsdag</option>
+								<option value="gæsteudstilling">Gæsteudstilling</option>
+								<option value="jubilæum">Jubilæum</option>
 								<option value="koncert">Koncert</option>
+								<option value="konfirmation">Konfirmation</option>
 								<option value="andet">Andet</option>
 							<select>
                         </div>
@@ -266,17 +227,18 @@ class Dawinti extends Widget_Base {
 						<button type='submit' name='dawintisubmit' id='dawinti-booking-form-btn'>Send forespørgelse</button>
                     </form>
 				</div>
+				<div id="tak-for-besked">
+						<h3> Tak for din besked. Vi vil svare tibage hurtigst muligt </h3>
+				</div>
 			</div>
-				<?php
-					endif;
-				?>
 
 				<!-- FUNKTION DER SENDER MAIL -->
 				<?php
-					$message_sent == false;
 
-					if(isset($_POST['dawintisubmit']) && $_POST['dawinti_sender_mail'] != '') {
-							$to = 'drescherrijna@gmail.com';
+					$to = strval($settings['mail_to']);
+
+					if(isset($_POST['dawintisubmit']) && $_POST['dawinti_sender_mail'] != '' ) {
+							
 	
 							$sendevent = $_POST['dawinti_event_type'];
 							$senddate = $_POST['dawinti_event_date'];
@@ -299,11 +261,11 @@ class Dawinti extends Widget_Base {
 		
 							
 							wp_mail($to, $sendevent, $body);	
-							$message_sent = true;	
 
 					}
 				
 				?>
+				
 
 				<?php
 
