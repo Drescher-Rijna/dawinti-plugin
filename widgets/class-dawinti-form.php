@@ -7,7 +7,7 @@
  * @subpackage WordPress
  * @author     Drescher Rijna & Veli Aday
  * @copyright  2021 Drescher Rijna & Veli Aday
- * @since      1.0.0
+ * @since      1.1.0
  * php version 7.3.9
  */
 
@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || die();
 /**
  * Awesomesauce widget class.
  *
- * @since 1.0.0
+ * @since 1.1.0
  */
 class Dawinti extends Widget_Base {
 
@@ -35,14 +35,13 @@ class Dawinti extends Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'dawintiformcss', plugins_url( '/assets/css/dawinti-form.css', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
-		wp_register_script( 'formjs', plugins_url( '/assets/js/dawinti.js', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
+		wp_register_style( 'dawintiformcss', plugins_url( '/assets/css/dawinti-form.css', ELEMENTOR_DAWINTI ), array(), '1.1.0' );
 	}
 
 	/**
 	 * Retrieve the widget name.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @access public
 	 *
@@ -55,7 +54,7 @@ class Dawinti extends Widget_Base {
 	/**
 	 * Retrieve the widget title.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @access public
 	 *
@@ -68,7 +67,7 @@ class Dawinti extends Widget_Base {
 	/**
 	 * Retrieve the widget icon.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @access public
 	 *
@@ -86,7 +85,7 @@ class Dawinti extends Widget_Base {
 	 * Note that currently Elementor supports only one category.
 	 * When multiple categories passed, Elementor uses the first one.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @access public
 	 *
@@ -104,12 +103,8 @@ class Dawinti extends Widget_Base {
 		return array('dawintiformcss');
 	}
 
-	/**
-	 * Enqueue styles.
-	 */
-	 public function get_script_depends() {
-		return array('formjs');
-	}
+
+
 
 	
 
@@ -118,7 +113,7 @@ class Dawinti extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @access protected
 	 */
@@ -126,50 +121,58 @@ class Dawinti extends Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => __( 'Content', 'Elementor Da Winti' ),
+				'label' => __( 'Options', 'Da Winti Form' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
-	
-		$repeater = new \Elementor\Repeater();
-	
-		$repeater->add_control(
-			'list_content', [
-				'label' => __( 'Title', 'Elementor Da Winti' ),
+
+		$this->add_control(
+			'mail_to',
+			[
+				'label' => __( 'Hvem skal modtage mailen', 'Da Winti Form' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'List Title' , 'Elementor Da Winti' ),
-				'label_block' => true,
+				'default' => __( 'eksempel@gmail.com', 'Da Winti Form' ),
+				'placeholder' => __( 'eksempel@gmail.com', 'Da Winti Form' ),
 			]
 		);
-	
-		$repeater->add_control(
-			'list_value', [
-				'label' => __( 'Content', 'Elementor Da Winti' ),
-				'type' => \Elementor\Controls_Manager::WYSIWYG,
-				'default' => __( 'List Content' , 'Elementor Da Winti' ),
+
+		$repeater = new \Elementor\Repeater();
+
+		$this->add_control(
+			'list_title', [
+				'label' => __( 'Label', 'Da Winti Form' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'List Title' , 'Da Winti Form' ),
 				'show_label' => true,
 			]
 		);
 
-	
+		$repeater->add_control(
+			'list_indhold', [
+				'label' => __( 'Indhold', 'Da Winti Form' ),
+				'type' => \Elementor\Controls_Manager::WYSIWYG,
+				'default' => __( 'List Indhold' , 'Da Winti Form' ),
+				'show_label' => false,
+			]
+		);
+
 		$this->add_control(
 			'list',
 			[
-				'label' => __( 'Repeater List', 'Elementor Da Winti' ),
+				'label' => __( 'Repeater List', 'Da Winti Form' ),
 				'type' => \Elementor\Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[
-						'list_content' => __( 'Begivenhed', 'Elementor Da Winti'),
-						'list_value' => __( 'type. Click the edit button to change this text.', 'Elementor Da Winti' ),
+						'list_indhold' => __( 'Indhold. Click the edit button to change this text.', 'Da Winti Form' ),
 					],
 				],
-				'title_field' => '{{{ list_content }}}',
 			]
 		);
-	
-		$this->end_controls_section();
 
+
+
+		$this->end_controls_section();
 		
 	}
 
@@ -178,23 +181,15 @@ class Dawinti extends Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @access protected
 	 */
 	protected function render() {
 			$settings = $this->get_settings_for_display();
 		?>
+			
 			<div id='dawinti-booking-form-container'>
-				<?php
-                    if($message_sent === true):
-				?>
-					<div id="tak-for-besked">
-						<h3> Tak for din besked. Vi vil svare tibage hurtigst muligt </h3>
-					</div>
-                <?php         
-                    else:
-                ?>
 			    <div id='dawinti-booking-form-container-sub'>
                     <h2 id='dawinti-booking-form-title'>
                     Bookingforespørgsel
@@ -202,22 +197,26 @@ class Dawinti extends Widget_Base {
                     <h3 id='dawinti-booking-form-subtitle'>
                     Send en forespørgsel på en begivenhed eller arrangement.
                     </h3>
+					<p id="notice-dawinti"><u>Bemærk:</u> Send helst besked 5 til 7 dage inden begivenheden skal finde sted </p>
                     <form action="" id='dawinti-booking-form' method='POST' >
                         <div id='dawinti-booking-form-begivenhed'>
-                            <label>
-                            Begivenhed
-                            </label>
-							<select name='dawinti_event_type'>
-								<option value="fest">Fest</option>
-								<option value="jubilæum">Jubilæum</option>
-								<option value="konfirmation">Konfirmation</option>
-								<option value="begravelse">Begravelse</option>
-								<option value="business møde">Business møde</option>
-								<option value="fødselsdag">Fødselsdag</option>
-								<option value="bryllup">Bryllup</option>
-								<option value="artist">Artist</option>
-								<option value="koncert">Koncert</option>
-								<option value="andet">Andet</option>
+                            
+                            <?php 
+							echo '<label>' . $settings['list_title'] . '</label>';
+							?>
+                            
+							
+							<select name='dawinti_event_type' required>
+								<option value="" disabled selected>Vælg venligst...</option>
+								<?php
+									if ( $settings['list'] ) {
+										foreach (  $settings['list'] as $item ) {
+											echo '<option>' . $item['list_indhold'] . '</option>';
+										}
+										
+									}
+								?>
+								
 							<select>
                         </div>
                             
@@ -225,7 +224,8 @@ class Dawinti extends Widget_Base {
                             <label>
                             Vælg dato
                             </label>
-                            <input name='dawinti_event_date' type='date' required />
+							
+                            <input id="dawinti-event-date" name='dawinti_event_date' type='date' required />
                         </div>
                             
                         <div id='dawinti-booking-form-personer'>
@@ -253,30 +253,66 @@ class Dawinti extends Widget_Base {
                             <label>
                             E-mail
                             </label>
-                            <input name='dawinti_sender_mail' type='text' placeholder='eksempel@gmail.com' required  />
+                            <input id="dawinti-email" name='dawinti_sender_mail' type='text' placeholder='eksempel@gmail.com' required  />
                         </div>
 
                         <div id='dawinti-booking-form-besked'>
                             <label>
                             Din besked
                             </label>
-                            <textarea name='dawinti_message' placeholder='Skriv en besked...' required></textarea>
+                            <textarea id="dawinti-besked" name='dawinti_message' placeholder='Skriv en besked...' required></textarea>
                         </div>
 
 						<button type='submit' name='dawintisubmit' id='dawinti-booking-form-btn'>Send forespørgelse</button>
                     </form>
 				</div>
+				<div id="tak-for-besked">
+						<h3> Tak for din besked. Vi vil svare tibage hurtigst muligt </h3>
+				</div>
+
+				<script>
+						document.getElementById("dawinti-booking-form-btn").addEventListener("click", mailSend);
+
+						function mailSend() {
+
+							var besked = document.getElementById('dawinti-besked').value;
+							var email = document.getElementById('dawinti-email').value;
+
+							if(besked != '' && email != '') {
+								document.getElementById('dawinti-booking-form-btn').style.display = "none";
+								document.getElementById('tak-for-besked').style.display = "block";
+							}
+							
+						}
+
+						//BRUGEREN SKAL IKKE KUNNE SENDE EN FORESPØRGSEL OM ET EVENT TIDLIGERE END EN UGE PÅ FORHÅND
+						var dtToday = new Date();
+							
+						var month = dtToday.getMonth() + 1;
+						var day = dtToday.getDate();
+						var year = dtToday.getFullYear();
+
+							if(month < 10) {
+								month = '0' + month.toString();
+							}
+								
+							if(day < 10) {
+								day = '0' + day.toString();
+							}
+								
+							
+						var minDate = year + '-' + month + '-' + day;
+						document.getElementById('dawinti-event-date').setAttribute('min', minDate);
+				</script>
 			</div>
-				<?php
-					endif;
-				?>
 
 				<!-- FUNKTION DER SENDER MAIL -->
 				<?php
-					$message_sent == false;
 
-					if(isset($_POST['dawintisubmit']) && $_POST['dawinti_sender_mail'] != '') {
-							$to = 'drescherrijna@gmail.com';
+					$to = strval($settings['mail_to']);
+
+					if(isset($_POST['dawintisubmit']) && $_POST['dawinti_sender_mail'] != '' ) {
+							
 	
 							$sendevent = $_POST['dawinti_event_type'];
 							$senddate = $_POST['dawinti_event_date'];
@@ -296,14 +332,16 @@ class Dawinti extends Widget_Base {
 							$body .= "Besked: " . $sendmess . "\r\n";
 							$body .= "Email: " . $sendfrom . "\r\n";
 							$body .= "Nummer: " . $sendernumber . "\r\n";
-		
 							
 							wp_mail($to, $sendevent, $body);	
-							$message_sent = true;	
+
+							header("Location: https://dawinti.drescher-rijna.dk/arrangementer/");
+    						exit;
 
 					}
 				
 				?>
+				
 
 				<?php
 
@@ -314,7 +352,7 @@ class Dawinti extends Widget_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @access protected
 	 */

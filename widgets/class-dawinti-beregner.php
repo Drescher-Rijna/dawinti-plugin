@@ -7,7 +7,7 @@
  * @subpackage WordPress
  * @author     Drescher Rijna & Veli Aday
  * @copyright  2021 Drescher Rijna & Veli Aday
- * @since      1.0.0
+ * @since      1.1.0
  * php version 7.3.9
  */
 
@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || die();
 /**
  * Awesomesauce widget class.
  *
- * @since 1.0.0
+ * @since 1.1.0
  */
 class Dawinti_Beregner extends Widget_Base {
 
@@ -35,8 +35,8 @@ class Dawinti_Beregner extends Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_register_style( 'beregnercss', plugins_url( '/assets/css/beregner.css', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
-        wp_register_script( 'beregnerjs', plugins_url( '/assets/js/beregner.js', ELEMENTOR_DAWINTI ), array(), '1.0.0' );
+		wp_register_style( 'beregnercss', plugins_url( '/assets/css/beregner.css', ELEMENTOR_DAWINTI ), array(), '1.1.0' );
+        wp_register_script( 'beregnerjs', plugins_url( '/assets/js/beregner.js', ELEMENTOR_DAWINTI ), array(), '1.1.0' );
 
 		
 	}
@@ -45,7 +45,7 @@ class Dawinti_Beregner extends Widget_Base {
 	/**
 	 * Retrieve the widget name.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @access public
 	 *
@@ -58,7 +58,7 @@ class Dawinti_Beregner extends Widget_Base {
 	/**
 	 * Retrieve the widget title.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @access public
 	 *
@@ -71,7 +71,7 @@ class Dawinti_Beregner extends Widget_Base {
 	/**
 	 * Retrieve the widget icon.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @access public
 	 *
@@ -89,7 +89,7 @@ class Dawinti_Beregner extends Widget_Base {
 	 * Note that currently Elementor supports only one category.
 	 * When multiple categories passed, Elementor uses the first one.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @access public
 	 *
@@ -119,7 +119,7 @@ class Dawinti_Beregner extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @access protected
 	 */
@@ -130,7 +130,7 @@ class Dawinti_Beregner extends Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @access protected
 	 */
@@ -235,7 +235,7 @@ class Dawinti_Beregner extends Widget_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @access protected
 	 */

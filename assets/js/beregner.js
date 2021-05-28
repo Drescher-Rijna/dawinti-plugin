@@ -361,7 +361,7 @@ document.getElementById("dawinti-beregner-form").addEventListener("submit", (e) 
     e.preventDefault();
 
     // SÆT TOTAL ANTAL DØGN TIL ANTALLET AF DØGN BEREGNET AF GETDAYS FUNKTIONEN TIL IF-SÆTNING
-    totalDoegn = GetDays();
+    totalDoegn = GetDays() + 1;
 
     console.log(Personer);
     console.log(children);
