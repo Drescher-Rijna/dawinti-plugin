@@ -136,6 +136,42 @@ class Dawinti extends Widget_Base {
 			]
 		);
 
+		$repeater = new \Elementor\Repeater();
+
+		$this->add_control(
+			'list_title', [
+				'label' => __( 'Label', 'Da Winti Form' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'List Title' , 'Da Winti Form' ),
+				'show_label' => true,
+			]
+		);
+
+		$repeater->add_control(
+			'list_indhold', [
+				'label' => __( 'Indhold', 'Da Winti Form' ),
+				'type' => \Elementor\Controls_Manager::WYSIWYG,
+				'default' => __( 'List Indhold' , 'Da Winti Form' ),
+				'show_label' => false,
+			]
+		);
+
+		$this->add_control(
+			'list',
+			[
+				'label' => __( 'Repeater List', 'Da Winti Form' ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater->get_controls(),
+				'default' => [
+					[
+						'list_indhold' => __( 'Indhold. Click the edit button to change this text.', 'Da Winti Form' ),
+					],
+				],
+			]
+		);
+
+
+
 		$this->end_controls_section();
 		
 	}
@@ -164,21 +200,23 @@ class Dawinti extends Widget_Base {
 					<p id="notice-dawinti"><u>Bemærk:</u> Send helst besked 5 til 7 dage inden begivenheden skal finde sted </p>
                     <form action="" id='dawinti-booking-form' method='POST' >
                         <div id='dawinti-booking-form-begivenhed'>
-                            <label>
-                            Begivenhed
-                            </label>
+                            
+                            <?php 
+							echo '<label>' . $settings['list_title'] . '</label>';
+							?>
+                            
+							
 							<select name='dawinti_event_type' required>
 								<option value="" disabled selected>Vælg venligst...</option>
-								<option value="begravelse">Begravelse</option>
-								<option value="bryllup">Bryllup</option>
-								<option value="business møde">Business møde</option>
-								<option value="fest">Fest</option>
-								<option value="fødselsdag">Fødselsdag</option>
-								<option value="gæsteudstilling">Gæsteudstilling</option>
-								<option value="jubilæum">Jubilæum</option>
-								<option value="koncert">Koncert</option>
-								<option value="konfirmation">Konfirmation</option>
-								<option value="andet">Andet</option>
+								<?php
+									if ( $settings['list'] ) {
+										foreach (  $settings['list'] as $item ) {
+											echo '<option>' . $item['list_indhold'] . '</option>';
+										}
+										
+									}
+								?>
+								
 							<select>
                         </div>
                             
