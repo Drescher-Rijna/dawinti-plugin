@@ -9,6 +9,10 @@
     width: 100%;
 }
 
+#dawinti-booking-form {
+    max-width: 100%;
+}
+
 #dawinti-booking-form-container #dawinti-booking-form-container-sub select {
     border: none;
     outline: none;
@@ -97,6 +101,7 @@ input[type=number] {
     display: flex;
     flex-direction: column;
     justify-content: start;
+    max-width: 100%;
 }
 
 #dawinti-booking-form input,
@@ -206,6 +211,14 @@ input[type=number] {
 }
 
 @media only screen and (max-width: 480px) {
+
+    #dawinti-booking-form input,
+    #dawinti-booking-form select,
+    #dawinti-booking-form option,
+    #dawinti-booking-form input textarea {
+        max-width: 100%;
+    }
+
 
 
     #dawinti-booking-form-container-sub h2 {
