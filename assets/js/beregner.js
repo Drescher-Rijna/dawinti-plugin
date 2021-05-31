@@ -323,37 +323,7 @@ antalChild.addEventListener("change", () => {
 });
 
 
-// BRUGEREN SKAL IKKE KUNNE VÆLGE EN DATO FØR DAGENS DATO
-var dtToday = new Date();
-    
-var month = dtToday.getMonth() + 1;
-var day = dtToday.getDate();
-var year = dtToday.getFullYear();
 
-    if(month < 10) {
-        month = '0' + month.toString();
-    }
-        
-    if(day < 10) {
-        day = '0' + day.toString();
-    }
-        
-    
-var minDate = year + '-' + month + '-' + day;
-document.getElementById('start-dato-input').setAttribute('min', minDate);
-document.getElementById('slut-dato-input').setAttribute('min', minDate);
-
-
-
-// BEREGNEREN SKAL HAVE STARTDATO OG SLUTDATO TIL AT BLIVE ANTALLET AF DAGE ISTEDET FOR TO DATOER
-function GetDays() {
-    var start = new Date(document.getElementById("start-dato-input").value);
-    var slut = new Date(document.getElementById("slut-dato-input").value);
-
-    console.log((slut.getTime()-start.getTime()) / (1000 * 60 * 60 * 24));
-
-    return parseInt((slut.getTime()-start.getTime()) / (1000 * 60 * 60 * 24));
-};
 
 
 // BEREGNEREN HAR BRUG FOR AT BRUGEREN TRYKKER PÅ EN SUBMIT KNAP SÅ DEN KAN LAVE BEREGNINGEN
@@ -361,7 +331,7 @@ document.getElementById("dawinti-beregner-form").addEventListener("submit", (e) 
     e.preventDefault();
 
     // SÆT TOTAL ANTAL DØGN TIL ANTALLET AF DØGN BEREGNET AF GETDAYS FUNKTIONEN TIL IF-SÆTNING
-    totalDoegn = GetDays();
+    totalDoegn = document.getElementById("dage-input").value;
 
     console.log(Personer);
     console.log(children);
@@ -371,13 +341,6 @@ document.getElementById("dawinti-beregner-form").addEventListener("submit", (e) 
     if (children > antalPersoner || children == antalPersoner) {
         document.getElementById("error-message-container").style.display = "block";
         document.getElementById("error-message").innerHTML = "FEJL: Antallet af børn kan ikke være højere end eller det samme som antallet af personer der kommer i alt.";
-        return "";
-    }
-
-    // FEJLMEDDELELSE TIL HVIS BRUGEREN VÆLGER SLUT DATO DER ER MINDRE END START DATOEN
-    if (totalDoegn < 0 || totalDoegn == 0) {
-        document.getElementById("error-message-container").style.display = "block";
-        document.getElementById("error-message").innerHTML = "FEJL: Slut datoen kan ikke være mindre end start datoen eller det samme som start datoen";
         return "";
     }
 
