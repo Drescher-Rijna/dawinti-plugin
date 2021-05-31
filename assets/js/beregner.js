@@ -344,13 +344,6 @@ document.getElementById("dawinti-beregner-form").addEventListener("submit", (e) 
         return "";
     }
 
-    // FEJLMEDDELELSE TIL HVIS BRUGEREN VÆLGER SLUT DATO DER ER MINDRE END START DATOEN
-    if (totalDoegn < 0 || totalDoegn == 0) {
-        document.getElementById("error-message-container").style.display = "block";
-        document.getElementById("error-message").innerHTML = "FEJL: Slut datoen kan ikke være mindre end start datoen eller det samme som start datoen";
-        return "";
-    }
-
     var pris;
 
     // HVIS BÅDE ANTAL BØRN OG STARTDATO OG SLUTDATO ER UDFYLDT KORREKT, BEREGN PRISEN
