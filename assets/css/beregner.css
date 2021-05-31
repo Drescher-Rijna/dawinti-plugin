@@ -87,6 +87,11 @@ font-family: 'Open Sans', sans-serif;
     flex-direction: column;
 }
 
+#antal-dage-container #dage-container {
+    display: flex;
+    flex-direction: column;
+}
+
 h3 {
     margin-bottom: 7px;
 }
