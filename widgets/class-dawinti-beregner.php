@@ -187,7 +187,7 @@ class Dawinti_Beregner extends Widget_Base {
                         <h3>
                             Hvor mange døgn vil du/i overnatte?
                         </h3>
-                        <label class="start-dato">
+                        <label class="antal-dage-label">
                             Antal døgn
                         </label>
                         <!-- Hvor skriver antal døgn man vil overnatte -->

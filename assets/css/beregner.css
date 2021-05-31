@@ -82,7 +82,7 @@ font-family: 'Open Sans', sans-serif;
     margin-bottom: 2px;
 }
 
-#valg-datoer-container {
+#antal-dage-container {
     display: flex;
     flex-direction: column;
 }
@@ -105,11 +105,7 @@ select, input {
     padding: 10px 5px 10px 5px;
 }
 
-.start-dato {
-    margin-bottom: 5px;
-}
-
-.slut-dato {
+.antal-dage-label {
     margin-bottom: 5px;
 }
 
@@ -122,7 +118,7 @@ select, input {
     
 }
 
-#dawinti-form-container option, input, #valg-datoer-container input {
+#dawinti-form-container option, input, #antal-dage-container input {
     font-size: 1rem;
     padding: 12px 12px 10px 5px;
     border-radius: 5px;
@@ -194,8 +190,7 @@ select, input {
     max-width: 400px;
 }
 
-#start-dato-container,
-#slut-dato-container {
+#dage-container {
     display: flex;
     flex-direction: column;
 }
