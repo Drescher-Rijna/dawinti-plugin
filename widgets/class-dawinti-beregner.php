@@ -182,26 +182,16 @@ class Dawinti_Beregner extends Widget_Base {
                 </div>
 
                 <!-- Valg af overnatning periode som skal omregnes i JS -->
-                <div id="valg-datoer-container">
-                    <div id="start-dato-container">
+                <div id="antal-dage-container">
+                    <div id="dage-container">
                         <h3>
-                            Hvor langtid vil i overnatte?
+                            Hvor mange døgn vil du/i overnatte?
                         </h3>
                         <label class="start-dato">
-                            Start dato:
+                            Antal døgn
                         </label>
-                        <!-- Hvor man vælger startdatoen for sit ophold -->
-                        <input type="date" id="start-dato-input" required/>
-                    </div>
-                    
-                    <br/>
-
-                    <div id="slut-dato-container">
-                        <!-- Hvor man vælger slutdatoen for sit ophold -->
-                        <label class="slut-dato">
-                            Slut dato:
-                        </label>
-                        <input type="date" id="slut-dato-input" required/>
+                        <!-- Hvor skriver antal døgn man vil overnatte -->
+                        <input type="number" id="dage-input" required/>
                     </div>
                 </div>
                 
