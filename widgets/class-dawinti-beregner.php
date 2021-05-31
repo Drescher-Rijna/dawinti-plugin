@@ -191,7 +191,7 @@ class Dawinti_Beregner extends Widget_Base {
                             Antal døgn
                         </label>
                         <!-- Hvor skriver antal døgn man vil overnatte -->
-                        <input placeholder="3" type="number" id="dage-input" required/>
+                        <input placeholder="0" type="number" id="dage-input" required/>
                     </div>
                 </div>
                 
