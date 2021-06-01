@@ -219,6 +219,12 @@ input[type=number] {
         max-width: 100%;
     }
 
+    #dawinti-form-container,
+    #dawinti-booking-form {
+        margin-right: 25px;
+        padding-right: 10px;
+        margin-left: 10px;
+    }
 
 
     #dawinti-booking-form-container-sub h2 {
