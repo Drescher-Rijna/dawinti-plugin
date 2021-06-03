@@ -219,7 +219,8 @@ input[type=number] {
         max-width: 100%;
     }
 
-    #dawinti-booking-form-container-sub{
+    #dawinti-booking-form-container-sub,
+    #dawinti-booking-form-container{
         margin-right: 1em;
         margin-left: 0;
     }
